@@ -1,0 +1,88 @@
+{
+    "caseSensitive": false,
+    "properties": {
+        "name": "main",
+        "environment": {
+            "type": "noflo-browser"
+        }
+    },
+    "inports": {},
+    "outports": {},
+    "groups": [],
+    "processes": {
+        "caesarproject/Encrypt_2b3dh": {
+            "component": "caesarproject/Encrypt",
+            "metadata": {
+                "label": "Encrypt",
+                "x": 252,
+                "y": 144,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/Output_eh4h5": {
+            "component": "core/Output",
+            "metadata": {
+                "label": "Output",
+                "x": 540,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "strings/ParseJson_c9qsw": {
+            "component": "strings/ParseJson",
+            "metadata": {
+                "label": "ParseJson",
+                "x": 396,
+                "y": 72,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "caesarproject/Encrypt_2b3dh",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/Output_eh4h5",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "caesarproject/Encrypt_2b3dh",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/ParseJson_c9qsw",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 0
+            }
+        },
+        {
+            "src": {
+                "process": "strings/ParseJson_c9qsw",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/Output_eh4h5",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "data": "{\"id\":1,\"data\":\"text to be encrypted\"}",
+            "tgt": {
+                "process": "caesarproject/Encrypt_2b3dh",
+                "port": "in"
+            }
+        }
+    ]
+}
