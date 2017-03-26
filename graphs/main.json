@@ -60,8 +60,7 @@
             "tgt": {
                 "process": "strings/ParseJson_c9qsw",
                 "port": "in"
-            },
-            "metadata": {}
+            }
         },
         {
             "src": {
