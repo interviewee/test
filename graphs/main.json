@@ -30,12 +30,12 @@
                 "height": 72
             }
         },
-        "test/Encrypt_ai921": {
-            "component": "test/Encrypt",
+        "test/EncryptCaesar_e4vuc": {
+            "component": "test/EncryptCaesar",
             "metadata": {
-                "label": "Encrypt",
+                "label": "EncryptCaesar",
                 "x": 216,
-                "y": 180,
+                "y": 144,
                 "width": 72,
                 "height": 72
             }
@@ -54,17 +54,18 @@
         },
         {
             "src": {
-                "process": "test/Encrypt_ai921",
+                "process": "test/EncryptCaesar_e4vuc",
                 "port": "out"
             },
             "tgt": {
                 "process": "strings/ParseJson_c9qsw",
                 "port": "in"
-            }
+            },
+            "metadata": {}
         },
         {
             "src": {
-                "process": "test/Encrypt_ai921",
+                "process": "test/EncryptCaesar_e4vuc",
                 "port": "out"
             },
             "tgt": {
@@ -76,10 +77,17 @@
             }
         },
         {
-            "data": "{\"id\": 1, \"data\": \"THE QUICK BROWN FOX JUMPS Over the Lazy Dog!\"}",
+            "data": "{\"id\":1,\"data\":\"The quick brown fox jumps over the lazy dog!\"}",
             "tgt": {
-                "process": "test/Encrypt_ai921",
-                "port": "in"
+                "process": "test/EncryptCaesar_e4vuc",
+                "port": "input_text"
+            }
+        },
+        {
+            "data": 3,
+            "tgt": {
+                "process": "test/EncryptCaesar_e4vuc",
+                "port": "shift"
             }
         }
     ]
