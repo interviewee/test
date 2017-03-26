@@ -7,6 +7,11 @@ var noflo = require('noflo');
  * @return {String} encrypted text
  */
 
+function ArgumentException(message) {
+   this.message = message;
+   this.name = 'ArgumentException';
+}
+
 var encryptCaesar = function(text_to_encrypt, shift) {
 	// build a mapping from plain to cipher char
     // Only doing lower case for simplicity
@@ -65,12 +70,21 @@ exports.getComponent = function() {
     var result;
     try {
       	// parse the input data
-      	var text_data = node_inputs.input_text;
+      	var input_text = node_inputs.input_text;
       	var shift = node_inputs.shift;
-        var input_json = JSON.parse(text_data);
-		
-        var encrypted = encryptCaesar(input_json.data, 
-                                      shift);
+      	if (!input_text || !shift) {
+         	throw new ArgumentException(
+              "Invalid input data: " + 
+              JSON.stringify(node_inputs)); 
+        }
+      
+      	if (!Number.isInteger(shift) || shift <= 0) {
+         	throw new ArgumentException(
+              "Shift parameter must be a positive integer");
+        }
+      	
+        var input_json = JSON.parse(input_text);
+        var encrypted = encryptCaesar(input_json.data, shift);
         result = {"id": input_json.id, 
                       "data": encrypted, "encrypted": true};
     } catch(err) {
