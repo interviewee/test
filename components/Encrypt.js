@@ -37,6 +37,8 @@ var encryptCaesar = function(text_to_encrypt, shift) {
 };
 
 exports.getComponent = function() {
+  // As per Caeser Cipher spec shifting by 3
+  var CAESAR_CIPHER_SHIFT = 3;
   var c = new noflo.Component();
   c.description = 'Forwards packets and metadata in the same way it receives them';
   c.icon = 'forward';
@@ -53,13 +55,21 @@ exports.getComponent = function() {
     forwardGroups: true,
     async: true
   }, function(data, groups, out, callback) {
-    // do something with data
-    // send output
-    var input_json = JSON.parse(data);
-    // As per Caeser Cipher spec shifting by 3
-    var encrypted = encryptCaesar(input_json.data, 3);
-    var result = {"id": input_json.id, 
-                  "data": encrypted, "encrypted": true};
+    var result;
+    
+    try {
+      	// parse the input data
+        var input_json = JSON.parse(data);
+
+        var encrypted = encryptCaesar(input_json.data, 
+                                      CAESAR_CIPHER_SHIFT);
+        result = {"id": input_json.id, 
+                      "data": encrypted, "encrypted": true};
+    } catch(err) {
+      	// communicate the error
+     	result = {"error": err.message,
+                      "data": data, "encrypted": false};
+    }
     out.send(JSON.stringify(result));
     // tell WirePattern we are done
     return callback();

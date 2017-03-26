@@ -76,7 +76,7 @@
             }
         },
         {
-            "data": "{\"id\": 1, \"data\": \"THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG!\"}",
+            "data": "{\"id\": 1, \"data\": \"THE QUICK BROWN FOX JUMPS Over the Lazy Dog!\"}",
             "tgt": {
                 "process": "test/Encrypt_ai921",
                 "port": "in"
