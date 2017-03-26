@@ -76,7 +76,7 @@
             }
         },
         {
-            "data": "{\"id\":1,\"data\":\"text to be encrypted\"}",
+            "data": "{\"id\": 1, \"data\": \"THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG!\"}",
             "tgt": {
                 "process": "test/Encrypt_ai921",
                 "port": "in"

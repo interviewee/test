@@ -1,6 +1,13 @@
 var noflo = require('noflo');
 
-var encryptCaesar = function(plain_text, shift) {
+/**
+ * Adds two numbers
+ * @param {String} text_to_encrypt
+ * @param {Number} shift - number of letters to shift by
+ * @return {String} encrypted text
+ */
+
+var encryptCaesar = function(text_to_encrypt, shift) {
 	// build a mapping from plain to cipher char
     // Only doing lower case for simplicity
   	var cipher_map = {};
@@ -13,6 +20,7 @@ var encryptCaesar = function(plain_text, shift) {
       	cipher_map[plain] = cipher;
     }
   	
+    var plain_text = text_to_encrypt.toLowerCase();
   	var encrypted_chars = [];
   	var n_text = plain_text.length;
   	for (var j = 0; j < n_text; j++) {
@@ -25,7 +33,6 @@ var encryptCaesar = function(plain_text, shift) {
         }
     }
   	var encrypted_text = encrypted_chars.join("");
-  	console.log(encrypted_text);
   	return encrypted_text;
 };
 
@@ -49,9 +56,10 @@ exports.getComponent = function() {
     // do something with data
     // send output
     var input_json = JSON.parse(data);
-    console.log(input_json);
+    // As per Caeser Cipher spec shifting by 3
     var encrypted = encryptCaesar(input_json.data, 3);
-    var result = {"enc": encrypted};
+    var result = {"id": input_json.id, 
+                  "data": encrypted, "encrypted": true};
     out.send(JSON.stringify(result));
     // tell WirePattern we are done
     return callback();
