@@ -1,0 +1,28 @@
+{
+  "name": "test",
+  "description": "NoFlo Test",
+  "version": "0.0.1",
+  "author": {
+    "name": "Dan T",
+    "email": "dmtaub@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Nash",
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/interviewee/test.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "noflo"
+  ],
+  "noflo": {
+    "components": {
+      "Encrypt": "components/Encrypt.js",
+      "Decrypt": "components/Decrypt.js"
+    }
+  }
+}
